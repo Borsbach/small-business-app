@@ -1,3 +1,24 @@
+
+.login-form {
+  text-align: center;
+  justify-content: center;
+}
+
+.username {
+  margin-top: 100px !important;
+  width: 300px;
+}
+
+.password {
+  width:300px;
+}
+
+.login-button {
+  margin-top: 30px !important;
+  width:300px;
+  background-color: lightgray !important;
+  color: black !important;
+}
 .card-container {
   display: flex;
   justify-content: space-between;
@@ -54,10 +75,10 @@ ul {
   margin: auto 20px;
 }
 
-.car-container {
+.listings-container {
   margin: 50px;
 }
 
-.car-paper {
-  padding: 50px;
+.details-container {
+  margin-top: 40px;
 }
