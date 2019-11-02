@@ -9,7 +9,7 @@ import {
 
 class AddListing extends Component {
   state = {
-    open: false,
+    open: true,
     name: '',
     description: '',
     hours: '',
@@ -27,7 +27,7 @@ class AddListing extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const payload = { ...this.state }
-    payload.id = this.props.carTotal + 1
+    payload.id = this.props.listing + 1
     delete payload.open
     console.log("THE LIST", payload)
     this.props.addListing(payload)

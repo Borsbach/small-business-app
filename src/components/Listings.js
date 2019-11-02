@@ -9,6 +9,7 @@ const StyledRow = styled(TableRow)`
   }
 `
 const Listings = (props) => {
+  console.log(props.user.username)
   
 const rowClick = (e, listing) => {
   e.preventDefault()
@@ -29,10 +30,10 @@ const rowClick = (e, listing) => {
         <TableBody>
             {props.listings.map((listing, idx) => (
               <StyledRow key={listing.id} onClick={(e) => rowClick(e, listing)}>
-                  <TableCell underline="hover">{listing["Name"]}</TableCell>
-                  <TableCell>{listing["Description"]}</TableCell>
-                  <TableCell>{listing["Hours"]}</TableCell>
-                  <TableCell>{listing["Address"]}</TableCell>
+                <TableCell underline="hover">{listing["Name"]}</TableCell>
+                <TableCell>{listing["Description"]}</TableCell>
+                <TableCell>{listing["Hours"]}</TableCell>
+                <TableCell>{listing["Address"]}</TableCell>
               </StyledRow>
             ))}
           </TableBody>
@@ -41,6 +42,7 @@ const rowClick = (e, listing) => {
   )
 }
 
-// {/* <Link to={{ pathname: `/listing/${listing.id}`, state: listing }}></Link> */}
-
 export default withRouter(Listings)
+
+
+// {/* <Link to={{ pathname: `/listing/${listing.id}`, state: listing }}></Link> */}

@@ -1,57 +1,47 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import {Button, TextField, Container} from '@material-ui/core';
-import Listings from '../components/Listings'
+// import Listings from '../components/Listings'
 
-class Login extends Component {
-  state ={
-    username: '',
-    password: '',
-    loggedIn: false
-  }
-
-  handleTextChange = (e) => {
-    const state = { ...this.state }
-    state[e.target.name] = e.target.value
-    this.setState(state)
-  }
-
-  handleClick = () => {
-    this.setState({ loggedIn: !this.state.loggedIn })
-  }
-
-  login = (e) => {
+const Login = (props) =>  {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const history = useHistory()
+  
+  
+  const login = (e) => {
     e.preventDefault()
-    document.cookie = "loggedIn = true; max-age = 60*1000"
-    window.location.replace("/")
+    document.cookie=
+    'loggedIn=true;max-age = 60*1000'
+    console.log(props.userLogin)
+    props.userLogin(username)
+    history.push("/listing")
   }
-
-  render() {
-    if (this.state.loggedIn) {
-      return <Listings />
-    } else {
+  
+    // if (this.loggedIn) {
+    //   return <Listings />
+    // } else {
   return (
     <div className="login-form">
       <Container maxWidth="sm">
-        <form onSubmit={this.login}>
-          <TextField 
-            required
-            onChange={this.handleTextChange}
-            // value={this.state.username}
-            className='username'
+        <form onSubmit={login}>
+          <TextField className="username"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            name="username"
             label="Username"
+            required
             type="text"
-            margin="normal"
           />
           <br />
-          <TextField 
-            required
-            onChange={this.handleTextChange}
-            // value={this.state.password}
-            className='password'
+          <TextField className="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            name="password"
             label="Password"
             type="password"
-            margin="normal"
-          />
+            required 
+            />
           <br />
           <Button type="submit" variant="contained" color="primary" className="login-button">
             Login
@@ -59,8 +49,7 @@ class Login extends Component {
         </form>
       </Container>
     </div>
-    )};
-  }
+  )
 }
 
 export default Login;

@@ -1,6 +1,15 @@
 import { combineReducers } from "redux";
 
-const user = (state = null) => state;
+const user = (state = null, action) => {
+  switch (action.type) {
+    case "LOGIN":
+      return {
+        username: action.value
+      }
+      default:
+        return state
+  }
+}
 
 const listings = (state = [], action) => {
   switch (action.type) {
