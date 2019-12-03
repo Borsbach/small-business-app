@@ -1,55 +1,70 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import React, { PureComponent } from 'react';
+import { withRouter } from 'react-router-dom'
 import {Button, TextField, Container} from '@material-ui/core';
 // import Listings from '../components/Listings'
 
-const Login = (props) =>  {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const history = useHistory()
+class Login extends PureComponent {
   
+  state = {
+    username: '',
+    password: ''
+  };
+
+  onTextChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    })
+  }
   
-  const login = (e) => {
+  login = (e) => {
+    const newUser = {
+      username: this.state.username,
+      password: this.state.password
+    }
     e.preventDefault()
     document.cookie=
     'loggedIn=true;max-age = 60*1000'
-    console.log(props.userLogin)
-    props.userLogin(username)
-    history.push("/listing")
+    console.log('Props-login:', this.props)
+    this.props.userLogin(newUser);
+    this.props.authenticate();
+    this.props.history.push("/listing")
   }
-  
-    // if (this.loggedIn) {
+  render() {
+    return (
+      <div className="login-form">
+        <Container maxWidth="sm">
+          <form onSubmit={this.login}>
+            <TextField className="username"
+              onChange={this.onTextChange}
+              value={this.state.username}
+              name="username"
+              label="Username"
+              required
+              type="text"
+            />
+            <br />
+            <TextField className="password"
+              onChange={this.onTextChange}
+              value={this.state.password}
+              name="password"
+              label="Password"
+              type="password"
+              required 
+              />
+            <br />
+            <Button type="submit" variant="contained" color="primary" className="login-button">
+              Login
+            </Button>
+          </form>
+        </Container>
+      </div>
+    )
+  }
+    // if (props.login) {
     //   return <Listings />
     // } else {
-  return (
-    <div className="login-form">
-      <Container maxWidth="sm">
-        <form onSubmit={login}>
-          <TextField className="username"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-            name="username"
-            label="Username"
-            required
-            type="text"
-          />
-          <br />
-          <TextField className="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            name="password"
-            label="Password"
-            type="password"
-            required 
-            />
-          <br />
-          <Button type="submit" variant="contained" color="primary" className="login-button">
-            Login
-          </Button>
-        </form>
-      </Container>
-    </div>
-  )
 }
 
-export default Login;
+
+export default withRouter(Login);

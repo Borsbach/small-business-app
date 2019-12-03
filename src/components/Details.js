@@ -1,20 +1,27 @@
 import React from 'react'
 import { Container, Table, TableBody, TableHead, TableRow } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
+import GoogleMap from '../components/GoogleMap'
 
 
 const Details = (props) => {
-  const { Name, Description, Hours, Address } = props.history.location.state;
+  console.log('props off history', props.history.location.state)
+  const { Name, Description, Hours, Address, coordinates } = props.history.location.state;
     
   return (
     <Container maxWidth="sm" className="details-container">
       <Table>
         <TableHead>
           <TableBody>
-            <TableRow><h1>{Name}</h1></TableRow>
-            <TableRow><h3>{Hours}</h3></TableRow>
-            <TableRow><h3>{Address}</h3></TableRow>
-            <TableRow>{Description}</TableRow>              
+            <TableRow className="name">{Name}</TableRow>
+            <br />        
+            <TableRow className="hours">{Hours}</TableRow>
+            <br />
+            <TableRow className="address">{Address}</TableRow>
+            <br />
+            <TableRow>{Description}</TableRow> 
+            <br />             
+            <GoogleMap coordinates={coordinates}/>
           </TableBody>
         </TableHead>
       </Table>

@@ -1,16 +1,18 @@
 import { connect } from 'react-redux'
 import Navigation from '../components/Navigation'
-import { userLogin } from '../redux/actions'
+import { userLogin, authenticate } from '../redux/actions'
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    login: state.login
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLogin: (username) => dispatch(userLogin(username))
+    userLogin: (username) => dispatch(userLogin(username)),
+    authenticate: () => dispatch(authenticate()),
   }
 }
 

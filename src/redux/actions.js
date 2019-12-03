@@ -12,9 +12,19 @@ export const removeListing = (index) => {
   }
 }
 
-export const userLogin = (username) => {
+export const userLogin = (user) => {
   return {
     type: 'LOGIN',
-    value: username
+    value: user
+  }
+}
+
+export const authenticate = (user, boolean) => {
+  return {
+    type: 'AUTHENTICATE',
+    value: {
+      boolean: boolean,
+      user: user
+    } 
   }
 }

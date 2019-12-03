@@ -72,7 +72,7 @@ ul {
 }
 
 .nav-list-item {
-  margin: auto 20px;
+  margin: auto 25px;
 }
 
 .listings-container {
@@ -81,4 +81,16 @@ ul {
 
 .details-container {
   margin-top: 40px;
+}
+
+.name {
+  font-size: 2.5rem;
+}
+
+.hours {
+  font-size: 1.5rem;
+}
+
+.address {
+  font-size: 1.5rem;
 }
